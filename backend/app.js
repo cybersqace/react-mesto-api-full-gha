@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
@@ -8,15 +9,12 @@ const { createUser, login } = require('./controllers/users');
 const NotFound = require('./errors/NotFound');
 const { signInValidation, signUpValidation } = require('./middlewares/validations');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { DB_ADRESS } = require('./config');
 
 const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(express.json());
-
-mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
-  useNewUrlParser: true,
-});
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -25,6 +23,11 @@ app.get('/crash-test', () => {
 });
 
 app.use(cors);
+mongoose.connect(DB_ADRESS, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+});
+
 app.use(requestLogger);
 app.post('/signin', signInValidation, login);
 app.post('/signup', signUpValidation, createUser);
