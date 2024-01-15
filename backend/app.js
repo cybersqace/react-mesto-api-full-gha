@@ -25,7 +25,6 @@ app.get('/crash-test', () => {
 app.use(cors);
 mongoose.connect(DB_ADRESS, {
   useNewUrlParser: true,
-  useCreateIndex: true,
 });
 
 app.use(requestLogger);
