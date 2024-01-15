@@ -1,8 +1,10 @@
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
+  'https://mestoprojectview.nomoredomainsmonster.ru',
+  'http://mestoprojectview.nomoredomainsmonster.ru',
   'https://praktikum.tk',
   'http://praktikum.tk',
-  'http://localhost:3001',
+  'http://localhost:3000',
 ];
 
 // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
