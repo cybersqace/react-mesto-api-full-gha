@@ -103,7 +103,7 @@ export class Api {
 }
 
 const api = new Api({
-  baseUrl: 'api.mestoprojectview.nomoredomainsmonster.ru',
+  baseUrl: 'https://api.mestoprojectview.nomoredomainsmonster.ru',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
