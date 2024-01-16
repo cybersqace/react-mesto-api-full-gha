@@ -23,9 +23,7 @@ app.get('/crash-test', () => {
 });
 
 app.use(cors);
-mongoose.connect(DB_ADRESS, {
-  useNewUrlParser: true,
-});
+mongoose.connect(DB_ADRESS);
 
 app.use(requestLogger);
 app.post('/signin', signInValidation, login);
