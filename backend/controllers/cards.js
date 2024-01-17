@@ -33,7 +33,13 @@ module.exports.deleteCard = (req, res, next) => {
       }
       throw new Forbidden('В доступе отказано');
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        next(new BadRequest('Передан некорректный id'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.likeCard = (req, res, next) => {

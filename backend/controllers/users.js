@@ -21,7 +21,13 @@ module.exports.getUserById = (req, res, next) => {
       }
       return res.status(200).send(user);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        next(new BadRequest('Передан некорректный id'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
@@ -44,7 +50,11 @@ module.exports.createUser = (req, res, next) => {
         name, about, avatar, email, password: hash,
       });
     })
-    .then((user) => res.status(201).send(user))
+    .then((user) => {
+      const userInfo = { ...user };
+      delete userInfo.password;
+      res.status(201).send({ user: userInfo });
+    })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new BadRequest('Переданы некорректные данные'));
