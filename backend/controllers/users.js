@@ -52,7 +52,7 @@ module.exports.createUser = (req, res, next) => {
         .then((user) => {
           const userInfo = { ...user };
           delete userInfo._doc.password;
-          res.status(201).send({ user: userInfo['_doc'] });
+          res.status(201).send({ user: userInfo._doc });
         })
         .catch((err) => {
           if (err.name === 'ValidationError') {

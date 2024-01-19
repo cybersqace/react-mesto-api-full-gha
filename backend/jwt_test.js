@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 // вставьте сюда JWT, который вернул публичный сервер
-const YOUR_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWE2YTBkMDI5Njg4NDZjMzc1YWZhZGUiLCJpYXQiOjE3MDU1OTE3NjEsImV4cCI6MTcwNjE5NjU2MX0.FPsUHc9jmyhHgT_S3XpzOxWKn1twBQOqeW_ucUgIJas';
+const YOUR_JWT = '';
 
 // вставьте сюда секретный ключ для разработки из кода
 const SECRET_KEY_DEV = 'dev-secret';
