@@ -24,7 +24,7 @@ function Register({ onRegister }) {
         <h2 className="auth__title">Регистрация</h2>
         <form className="auth__form" onSubmit={handleSubmit}>
           <input className="auth__input" type="email" placeholder="Email" onChange={handleEmail}></input>
-          <input className="auth__input" type="password" placeholder="Пароль" onChange={handlePassword}></input>
+          <input className="auth__input" type="password" placeholder="Пароль" autoComplete="on" onChange={handlePassword}></input>
           <button className="auth__button" type="submit">Зарегистрироваться</button>
         </form>
         <Link to="/sign-in" className="auth__login-link">Уже зарегистрированы? Войти</Link>

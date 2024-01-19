@@ -5,7 +5,7 @@ const NotFound = require('../errors/NotFound');
 const BadRequest = require('../errors/BadRequest');
 const Conflict = require('../errors/Conflict');
 
-const { NODE_ENV, JWT_SECRET } = require('../utils/constants');
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
@@ -48,20 +48,20 @@ module.exports.createUser = (req, res, next) => {
     .then((hash) => {
       User.create({
         name, about, avatar, email, password: hash,
-      });
-    })
-    .then((user) => {
-      const userInfo = { ...user };
-      delete userInfo.password;
-      res.status(201).send({ user: userInfo });
-    })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        return next(new BadRequest('Переданы некорректные данные'));
-      } if (err.code === 11000) {
-        return next(new Conflict('Пользователь с таким e-mail уже зарегистрирован'));
-      }
-      return next(err);
+      })
+        .then((user) => {
+          const userInfo = { ...user };
+          delete userInfo._doc.password;
+          res.status(201).send({ user: userInfo['_doc'] });
+        })
+        .catch((err) => {
+          if (err.name === 'ValidationError') {
+            return next(new BadRequest('Переданы некорректные данные'));
+          } if (err.code === 11000) {
+            return next(new Conflict('Пользователь с таким e-mail уже зарегистрирован'));
+          }
+          return next(err);
+        });
     });
 };
 
