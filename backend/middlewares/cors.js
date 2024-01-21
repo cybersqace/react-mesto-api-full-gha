@@ -4,7 +4,7 @@ const allowedCors = [
   'http://mestoprojectview.nomoredomainsmonster.ru',
   'https://praktikum.tk',
   'http://praktikum.tk',
-  'http://localhost:3000',
+  'http://localhost:3001',
 ];
 
 // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)

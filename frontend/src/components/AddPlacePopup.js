@@ -1,9 +1,9 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup(props) {
-  const [name, setName] = React.useState('');
-  const [link, setLink] = React.useState('');
+  const [name, setName] = useState('');
+  const [link, setLink] = useState('');
 
   function handleNameChange(evt) {
     setName(evt.target.value);
@@ -22,7 +22,7 @@ function AddPlacePopup(props) {
     });
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setName('');
     setLink('');
 }, [props.isOpen]);
@@ -34,6 +34,7 @@ function AddPlacePopup(props) {
         title={'Новое место'}
         button={'Создать'}
         onSubmit={handleSubmit}
+        onCloseMouseClick={props.onCloseMouseClick}
         onClose={props.onClose}
     >
           <input type="text" minLength={2} maxLength={30} id="card-name" value={name} onChange={handleNameChange} name="name" className="form__input form__input_type_title" placeholder="Название" required="" />
